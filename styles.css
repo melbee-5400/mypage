@@ -45,41 +45,32 @@ body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica
 .item h3{margin:0;font-size:1rem}
 .muted{color:var(--muted);font-size:0.95rem}
 
-/* ===== Mobile adjustments ===== */
+/* ===== Tablet and mobile layout ===== */
 @media (max-width:880px){
+	.profile-page{max-width:720px}
 	.card{flex-direction:column;gap:14px}
-	.left-column{width:100%;display:flex;flex-direction:row;align-items:center;padding:12px}
-	.profile-photo{width:72px;height:72px;margin:0 12px 0 0;border-width:3px}
-	.left-column .actions{justify-content:flex-start}
-	.right-column{padding:10px}
-	.name{font-size:1.1rem}
+	.left-column,.right-column{max-width:none;width:100%}
+	.left-column{padding:18px}
+	.right-column{padding:0}
+	.profile-photo{width:96px;height:96px;border-width:3px}
 }
 
 @media (max-width:480px){
-	:root{--base-font:16px}
-	body{font-size:var(--base-font)}
-	.profile-page{padding:12px;margin:12px}
-	.card{flex-direction:column;align-items:center}
-	/* Make both columns full-width but constrained and centered */
-	.left-column, .right-column{max-width:720px;width:100%;margin-left:auto;margin-right:auto}
-	.left-column{display:block;text-align:center;padding:16px}
-	.left-column .actions{display:block;margin:12px 0}
-	.profile-photo{margin:0 auto 10px}
+	.profile-page{width:100%;margin:0;padding:12px}
+	.card{gap:12px}
+	.left-column{padding:16px}
+	.profile-photo{width:88px;height:88px;margin-bottom:10px}
 	.name{font-size:1.2rem}
 	.title,.location{font-size:0.95rem}
-	.right-column .about,.right-column .experience,.right-column .education,.right-column .contact{padding:14px;width:100%;box-sizing:border-box}
-	.item h3{font-size:0.98rem}
-	.muted{font-size:0.95rem}
-	.btn{display:block;padding:12px;width:100%;text-align:center;border-radius:10px}
+	.actions{display:block;margin:12px 0}
+	.btn{display:block;width:100%;padding:12px;text-align:center;border-radius:10px}
 	.sidebar-section{padding-top:10px}
 	.skills li{padding:8px 10px;font-size:14px}
-
-	/* Ensure visual parity: sections appear as same-width, centered cards */
-	.left-column, .right-column .about, .right-column .experience, .right-column .education, .right-column .contact, .sidebar-section{
-		width:100%;max-width:720px;margin-left:auto;margin-right:auto}
-
-	/* optional: minimum height to make boxes feel similar — adjust as needed */
-	.left-column, .right-column .about{min-height:160px}
+	.right-column .about,.right-column .experience,.right-column .education,.right-column .contact{padding:14px;margin-bottom:12px}
+	.item{padding-left:10px}
+	.item h3{font-size:0.98rem}
+	.photo-dialog{padding:12px}
+	.photo-dialog-content{width:100%;padding:12px}
 }
 
 /* Improve tap targets and readability on small screens */
