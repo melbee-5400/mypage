@@ -1,37 +1,90 @@
+
+/* ===== Resume styles (responsive-first) ===== */
 :root{
-  --linkedin-blue:#0a66c2;
-  --bg:#f3f6f9;
-  --card:#ffffff;
-  --muted:#586069;
-  --radius:10px;
+	--linkedin-blue:#0a66c2;
+	--bg:#f3f6f9;
+	--card:#ffffff;
+	--muted:#586069;
+	--radius:10px;
+	--base-font:16px;
 }
+
 *{box-sizing:border-box}
-body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111}
-.profile-page{max-width:1000px;margin:28px auto;padding:16px}
-.card{display:flex;gap:24px}
-.left-column{width:280px;flex:0 0 280px;background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.08)}
-.right-column{flex:1;background:transparent;padding:4px}
-.profile-photo{width:120px;height:120px;border-radius:50%;overflow:hidden;margin:0 auto 12px;border:4px solid #fff;box-shadow:0 6px 18px rgba(2,6,23,0.06)}
+html,body{height:100%}
+body{font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin:0; background:var(--bg); color:#111; font-size:var(--base-font); line-height:1.55; -webkit-font-smoothing:antialiased}
+
+.profile-page{max-width:1100px;width:calc(100% - 32px);margin:20px auto;padding:16px}
+.card{display:flex;gap:24px;align-items:flex-start}
+.left-column{flex-basis:280px;max-width:280px;width:100%;background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.08)}
+.right-column{flex:1;background:transparent;padding:12px}
+.profile-photo{display:block;width:clamp(72px,12vw,120px);height:clamp(72px,12vw,120px);border-radius:50%;overflow:hidden;margin:0 auto 12px;padding:0;border:4px solid #fff;box-shadow:0 6px 18px rgba(2,6,23,0.06);cursor:pointer;background:#fff}
 .profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
-.name{font-size:20px;margin:8px 0 4px;text-align:center}
-.title,.location{font-size:14px;color:var(--muted);text-align:center;margin:0}
+.photo-dialog{position:fixed;inset:0;z-index:10;display:none;place-items:center;padding:20px;background:rgba(2,6,23,.7)}
+.photo-dialog:target{display:grid}
+.photo-dialog-content{position:relative;width:min(90vw,520px);max-height:90vh;padding:14px;border-radius:var(--radius);box-shadow:0 18px 48px rgba(2,6,23,.35);background:var(--card)}
+.photo-dialog h2{margin:0 36px 10px 0;font-size:1rem}
+.photo-dialog img{width:100%;max-height:76vh;object-fit:contain;border-radius:6px}
+.photo-dialog-close{position:absolute;top:8px;right:10px;color:#111;font-size:28px;line-height:1;text-decoration:none;cursor:pointer}
+.name{font-size:1.25rem;margin:8px 0 4px;text-align:center}
+.title,.location{font-size:0.9rem;color:var(--muted);text-align:center;margin:0}
 .actions{display:flex;gap:8px;justify-content:center;margin:14px 0}
-.btn{display:inline-block;padding:8px 12px;border-radius:6px;text-decoration:none;color:var(--linkedin-blue);border:1px solid rgba(10,102,194,0.14);background:#fff;font-weight:600}
+.btn{display:inline-block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--linkedin-blue);border:1px solid rgba(10,102,194,0.14);background:#fff;font-weight:600}
 .btn.primary{background:var(--linkedin-blue);color:#fff;border:none}
 .sidebar-section{margin-top:18px;border-top:1px solid #eef2f6;padding-top:12px}
 .sidebar-section h3{margin:0 0 8px;font-size:13px}
+.sidebar-section p{margin:0 0 6px}
+.github-link a{display:inline-flex;align-items:center;gap:6px;color:#24292f;text-decoration:none}
+.github-link a:hover{text-decoration:underline}
+.github-link svg{width:14px;height:14px;fill:currentColor}
 .skills{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}
 .skills li{background:#eef6ff;color:var(--linkedin-blue);padding:6px 8px;border-radius:6px;font-size:13px}
 
 .right-column .about,.right-column .experience,.right-column .education,.right-column .contact{background:var(--card);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.04);margin-bottom:16px}
-.right-column h2{margin:0 0 8px;font-size:16px}
+.right-column h2{margin:0 0 8px;font-size:1.05rem}
 .item{border-left:3px solid #eef2f6;padding-left:12px;margin-bottom:12px}
-.item h3{margin:0;font-size:15px}
-.muted{color:var(--muted);font-size:14px}
+.item h3{margin:0;font-size:1rem}
+.muted{color:var(--muted);font-size:0.95rem}
 
+/* ===== Mobile adjustments ===== */
 @media (max-width:880px){
-  .card{flex-direction:column}
-  .left-column{width:100%;display:flex;flex-direction:row;align-items:center;padding:14px}
-  .profile-photo{width:72px;height:72px;margin:0 12px 0 0}
-  .left-column .actions{justify-content:flex-start}
+	.card{flex-direction:column;gap:14px}
+	.left-column{width:100%;display:flex;flex-direction:row;align-items:center;padding:12px}
+	.profile-photo{width:72px;height:72px;margin:0 12px 0 0;border-width:3px}
+	.left-column .actions{justify-content:flex-start}
+	.right-column{padding:10px}
+	.name{font-size:1.1rem}
 }
+
+@media (max-width:480px){
+	:root{--base-font:16px}
+	body{font-size:var(--base-font)}
+	.profile-page{padding:12px;margin:12px}
+	.card{flex-direction:column;align-items:center}
+	/* Make both columns full-width but constrained and centered */
+	.left-column, .right-column{max-width:720px;width:100%;margin-left:auto;margin-right:auto}
+	.left-column{display:block;text-align:center;padding:16px}
+	.left-column .actions{display:block;margin:12px 0}
+	.profile-photo{margin:0 auto 10px}
+	.name{font-size:1.2rem}
+	.title,.location{font-size:0.95rem}
+	.right-column .about,.right-column .experience,.right-column .education,.right-column .contact{padding:14px;width:100%;box-sizing:border-box}
+	.item h3{font-size:0.98rem}
+	.muted{font-size:0.95rem}
+	.btn{display:block;padding:12px;width:100%;text-align:center;border-radius:10px}
+	.sidebar-section{padding-top:10px}
+	.skills li{padding:8px 10px;font-size:14px}
+
+	/* Ensure visual parity: sections appear as same-width, centered cards */
+	.left-column, .right-column .about, .right-column .experience, .right-column .education, .right-column .contact, .sidebar-section{
+		width:100%;max-width:720px;margin-left:auto;margin-right:auto}
+
+	/* optional: minimum height to make boxes feel similar — adjust as needed */
+	.left-column, .right-column .about{min-height:160px}
+}
+
+/* Improve tap targets and readability on small screens */
+.btn{display:inline-block;padding:10px 12px;border-radius:8px;text-decoration:none;color:var(--linkedin-blue);border:1px solid rgba(10,102,194,0.14);background:#fff;font-weight:600}
+.btn.primary{background:var(--linkedin-blue);color:#fff;border:none}
+
+/* Ensure images and SVGs scale */
+img, svg{max-width:100%;height:auto;display:block}
